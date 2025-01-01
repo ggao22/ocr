@@ -1,0 +1,24 @@
+name: square_lowdim
+
+obs_dim: 9
+action_dim: 10
+keypoint_dim: 3
+
+obs_keys: &obs_keys ['object']
+task_name: &task_name square
+dataset_type: &dataset_type ph
+abs_action: &abs_action True
+dataset_path: &dataset_path data/robomimic/datasets/${task.task_name}/${task.dataset_type}/low_dim_abs.hdf5
+
+dataset:
+  _target_: diffusion_policy.dataset.robomimic_replay_lowdim_dataset_obsact.RobomimicReplayLowdimObsactDataset
+  dataset_path: *dataset_path
+  horizon: ${horizon}
+  pad_before: ${eval:'${n_obs_steps}-1+${n_latency_steps}'}
+  pad_after: ${eval:'${n_action_steps}-1'}
+  obs_keys: *obs_keys
+  abs_action: *abs_action
+  use_legacy_normalizer: False
+  seed: 42
+  val_ratio: 0.02
+  max_train_episodes: null

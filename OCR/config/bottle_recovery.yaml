@@ -1,0 +1,25 @@
+name: bottle_recovery
+
+keypoint_dim: 3
+dataset_path: data/real/datasets/bottle/ph/bottle_up.hdf5
+
+gmm:
+  n_components: 4
+  # params_used: /home/george/diffusion_policy/data/outputs/2024.10.07/16.10.22_bottle_recovery_gmm/gmms.npz #2
+  # params_used: /home/george/diffusion_policy/data/outputs/2024.10.07/16.11.32_bottle_recovery_gmm/gmms.npz #6
+  # params_used: /home/george/diffusion_policy/data/outputs/2024.10.08/17.09.26_bottle_recovery_gmm/gmms.npz #3
+
+  # params_used: /home/george/diffusion_policy/data/outputs/2024.10.09/11.29.25_bottle_recovery_gmm/gmms.npz #2
+  # params_used: /home/george/diffusion_policy/data/outputs/2024.10.09/11.50.38_bottle_recovery_gmm/gmms.npz #1
+  # params_used: /home/george/diffusion_policy/data/outputs/2024.10.09/11.57.56_bottle_recovery_gmm/gmms.npz #6
+  params_used: /home/george/diffusion_policy/data/outputs/2024.10.09/12.13.36_bottle_recovery_gmm/gmms.npz #4
+  
+recovery:
+  alpha: 0.00005
+  random_walk: 0.008
+
+translator_policy:
+  checkpoint_used: /home/george/diffusion_policy/data/outputs/2024.10.09/09.17.12_train_diffusion_unet_lowdim_obsact_bottle_lowdim/checkpoints/epoch=1050-train_action_mse_error=0.001.ckpt
+
+base_policy:
+  checkpoint_used: /home/george/diffusion_policy/data/outputs/2024.10.09/00.38.32_train_diffusion_unet_image_bottle_image/checkpoints/latest.ckpt
